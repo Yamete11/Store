@@ -1,0 +1,80 @@
+{
+	"main-page": {
+		"content": "Main Page"
+	},
+	"nav": {
+		"main-page": "Main page",
+		"product": "Product",
+		"productPurchase": "Purchase Content",
+		"purchase": "Purchase",
+		"logIn": "Log in",
+		"SignIn": "Sign In"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"product": {
+		"fields": {
+			"title": "Title",
+			"model": "Model",
+			"type": "Type",
+			"price": "Price"
+		},
+		"list": {
+			"title": "Employees",
+			"addNew": "Add new product",
+			"noData": "No employees in database",
+			"pageTitle": "List of products",
+			"lackProd" : "Lack of products",
+			"details": "Product details",
+			"detailsProd": "Sale details"
+		},
+		"form": {
+			"employment": "History of employment",
+			"add": {
+				"pageTitle": "Adding a new product",
+				"btnLabel": "Add the product",
+				"typeButton": "-- Choose type --",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new employee has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing an employee",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The employee has been successfully updated"
+				}
+			}
+		}
+	},
+	"emp": {
+		"form": {
+			"edit": {
+				"pageTitle": "Edit form"
+			}
+		}
+	},
+	"purchase": {
+		"fields": {
+			"firstName": "First Name",
+			"lastName": "Last Name",
+			"email": "Email",
+			"telNumber": "Telephone Number"
+		}
+	}
+}

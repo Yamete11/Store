@@ -1,0 +1,35 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Lista zamówień</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Numer telefonu</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let purchase of purchases) {%>
+        <tr>
+            <td><%= purchase.imie %></td>
+            <td><%= purchase.nazwisko %></td>
+            <td><%= purchase.email %></td>
+            <td><%= purchase.telNumber %></td>
+            <td>
+                <ul class="list-actions">
+                    <li><a href="/purchases/details/<%= purchase._id%>" class="list-actions-button-details">Szczegoly</a></li>
+                    <li><a href="/purchases/edit/<%= purchase._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                    <li><a href="/purchases/delete/<%= purchase._id%>" class="list-actions-button-delete">Usun</a></li>
+                </ul>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+
+    <p><a href="/purchases/add" class="button-add">Dodaj nowe zamówienie</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

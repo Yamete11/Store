@@ -1,0 +1,35 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Lista złożonych zamówień</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Imie</th>
+                <th>Liczba</th>
+                <th>Opis</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for (let prodPurchase of productPurchases) {%>
+            <tr>
+                <td><%= prodPurchase.product.title%></td>
+                <td><%= prodPurchase.purchase.imie%></td>
+                <td><%= prodPurchase.quantity %></td>
+                <td><%= prodPurchase.description %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li><a href="/productPurchases/details/<%= prodPurchase._id %>" class="list-actions-button-details">Szczegoly</a></li>
+                        <li><a href="/productPurchases/edit/<%= prodPurchase._id %>" class="list-actions-button-edit">Edytuj</a></li>
+                        <li><a href="/productPurchases/delete/<%= prodPurchase._id %>" class="list-actions-button-delete">Usun</a></li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+
+    <p><a href="/productPurchases/add" class="button-add">Dodaj nowe zakupy</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

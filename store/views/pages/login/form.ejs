@@ -1,0 +1,22 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" >
+
+
+        <label for="loginEmail">Email: </label>
+        <input type="email" id="loginEmail" name="email">
+
+        <label for="loginPassword">Password: </label>
+        <input type="password" id="loginPassword" name="password">
+
+        <span id="loginErrors"><%= locals.loginError ? locals.loginError : ''%></span>
+
+        <input class="login-button-submit" type="submit" value="<%=btnLabel%>">
+
+    </form>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

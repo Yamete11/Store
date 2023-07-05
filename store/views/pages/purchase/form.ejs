@@ -1,0 +1,103 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationPurchase.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();"> <!--onsubmit="return validateForm();"-->
+
+        <input type="hidden" name="_id" value="<%= purchase._id %>">
+
+        <label for="firstName">Imie: <span class="symbol-required">*</span></label>
+        <input type="text" name="imie" id="firstName" placeholder="2-60 znaków" value="<%= purchase.imie%>"
+               class="<%= validationErrors.find(e => e.path.includes('imie')) ? 'error-input' : '' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorName" class="errors-text">
+            <% if (validationErrors.find( e => e.path.includes('imie'))) { %>
+                <%= validationErrors.find( e => e.path.includes('imie')).message%>
+            <% } %>
+        </span>
+
+        <label for="secondName">Nazwisko: <span class="symbol-required">*</span></label>
+        <input type="text" name="nazwisko" id="secondName" placeholder="2-60 znaków" value="<%= purchase.nazwisko%>"
+               class="<%= validationErrors.find(e => e.path.includes('nazwisko')) ? 'error-input' : '' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorSurname" class="errors-text">
+            <% if (validationErrors.find( e => e.path.includes('nazwisko'))) { %>
+                <%= validationErrors.find( e => e.path.includes('nazwisko')).message%>
+            <% } %>
+        </span>
+
+
+        <label for="email">Email: <span class="symbol-required">*</span></label>
+        <input type="email" name="email" id="email" placeholder="name@mail.com"  value="<%= purchase.email%>"
+                    class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorEmail" class="errors-text">
+            <% if (validationErrors.find( e => e.path.includes('email'))) { %>
+                <%= validationErrors.find( e => e.path.includes('email')).message%>
+            <% } %>
+        </span>
+
+        <label for="telNumber">Num. tel.: <span class="symbol-required">*</span></label>
+        <input type="tel" name="telNumber" id="telNumber" placeholder="123456789"  value="<%= purchase.telNumber%>"
+               class="<%= validationErrors.find(e => e.path.includes('telNumber')) ? 'error-input' : '' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorTelNumber" class="errors-text">
+            <% if (validationErrors.find( e => e.path.includes('telNumber'))) { %>
+                <%= validationErrors.find( e => e.path.includes('telNumber')).message%>
+            <% } %>
+        </span>
+
+        <% if (formMode == 'createNew') { %>
+            <label for="password">Password: <span class="symbol-required">*</span></label>
+            <input type="text" name="password" id="password" placeholder="12345"  value="<%= purchase.password%>"
+                   class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"/>
+            <span id="errorPassword" class="errors-text">
+                <% if (validationErrors.find( e => e.path.includes('password'))) { %>
+                    <%= validationErrors.find( e => e.path.includes('password')).message%>
+                <% } %>
+            </span>
+        <% } %>
+
+
+        <% if (formMode == 'showDetails') { %>
+            <div class="form-buttons">
+                <a href="/purchases/edit/<%= purchase._id%>" class="form-button-edit">Edytuj</a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+                <input type="submit" class="form-button-submit" value="<%= btnLabel%>">
+                <a href="/purchases" class="form-button-cancel">Anuluj</a>
+            <% } else { %>
+                <a href="/purchases" class="form-button-cancel">Powrót</a>
+            <% } %>
+        </div>
+    </form>
+
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+        <% if (purchase.productPurchases != null) {%>
+            <% if (purchase.productPurchases.length > 0) {%>
+                <h2>Szczegóły sprzedaży</h2>
+                <table class="table-list">
+                    <thead>
+                    <tr>
+                        <th>Nazwa produktu</th>
+                        <th>Model</th>
+                        <th>Typ</th>
+                        <th>Cena</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (let p of purchase.productPurchases) { %>
+                        <tr>
+                            <td><a class="table-a" href="/products/details/<%= p.product._id%>"><%= p.product.title%></a></td>
+                            <td><%= p.product.model%></td>
+                            <td><%= p.product.productType_id%></td>
+                            <td><%= p.product.price%></td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            <% } else {%>
+                    <h2>Brak sprzedaży</h2>
+            <% } } }%>
+</main>
+<%- include('../../fragments/footer.ejs') %>

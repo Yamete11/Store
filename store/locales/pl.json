@@ -1,0 +1,72 @@
+{
+	"main-page": {
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"product": "Produkt",
+		"productPurchase": "Zawartosc Zamowienia",
+		"purchase": "Zamowienie",
+		"logIn": "Logowanie",
+		"SignIn": "Rejestracja"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"product": {
+		"fields": {
+			"title": "Nazwa",
+			"model": "Model",
+			"type": "Typ",
+			"price": "Cena"
+		},
+		"list": {
+			"title": "Pracownicy",
+			"addNew": "Dodaj nowy produkt",
+			"noData": "Brak pracowników w bazie",
+			"pageTitle": "Lista produktów",
+			"details": "Szczegóły produktu",
+			"detailsProd": "Szczegóły sprzedaży"
+		},
+		"form": {
+			"employment": "Historia zatrudnienia",
+			"add": {
+				"pageTitle": "Dodawanie produktu",
+				"btnLabel": "Dodaj produkt",
+				"typeButton": "-- Wybierz typ --",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano pracownika"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja pracownika",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano pracownika"
+				}
+			}
+		}
+	},
+	"purchase": {
+		"fields": {
+			"firstName": "Imie",
+			"lastName": "Nazwisko",
+			"email": "Email",
+			"telNumber": "Numer tel."
+		}
+	}
+}

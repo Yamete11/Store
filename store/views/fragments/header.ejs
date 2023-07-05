@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <title>Store</title>
+</head>
+<body>
+<header>
+    <h1>Store</h1>
+    <img src="/img/logo.jpg" alt="ACME HR Department logo">
+
+</header>
+
+<div id="login">
+    <% if(locals.loggedUser) {%>
+        <span>Jestes zalogowany jako: <%= locals.loggedUser.imie + " " + locals.loggedUser.nazwisko + "  " %></span>
+        <a href="/logout">Wyloguj sie</a>
+    <% } %>
+</div>
+
+<nav>
+    <ul>
+
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"><%= __('nav.main-page') %></a></li>
+        <% if(!locals.loggedUser) {%>
+        <li><a href="/login" class="<%= navLocation == 'login' ? 'active' : ''%>"><%= __('nav.logIn') %></a></li>
+        <% }%>
+        <% if(locals.loggedUser) {%>
+        <li><a href="/products" class="<%= navLocation == 'product' ? 'active' : ''%>"><%= __('nav.product') %></a></li>
+        <li><a href="/productPurchases" class="<%= navLocation == 'productPurchase' ? 'active' : ''%>"><%= __('nav.productPurchase') %></a></li>
+        <li><a href="/purchases" class="<%= navLocation == 'purchase' ? 'active' : ''%>"><%= __('nav.purchase') %></a></li>
+        <% }%>
+
+        <li><a href="/changeLang/pl" class="<%= locals.lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= locals.lang == 'en' ? 'active' : ''%>">EN</a></li>
+    </ul>
+</nav>
+
+</body>

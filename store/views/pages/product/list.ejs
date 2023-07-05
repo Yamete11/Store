@@ -1,0 +1,35 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2><%= __('product.list.pageTitle')%></h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th><%= __('product.fields.title') %></th>
+                    <th><%= __('product.fields.model') %></th>
+                    <th><%= __('product.fields.type') %></th>
+                    <th><%= __('product.fields.price') %></th>
+                    <th><%= __('list.actions.title') %></th>
+                </tr>
+            </thead>
+            <tbody>
+            <% for (let product of products) { %>
+                <tr>
+                    <td><%= product.title %></td>
+                    <td><%= product.model %></td>
+                    <td><%= product.productType.type %></td>
+                    <td><%= product.price %></td>
+                    <td>
+                        <ul class="list-actions">
+                            <li><a href="/products/details/<%=product._id %>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
+                            <li><a href="/products/edit/<%=product._id %>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a></li>
+                            <li><a href="/products/delete/<%=product._id %>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+
+        <p><a href="/products/add" class="button-add"><%= __('product.list.addNew')%></a></p>
+    </main>
+<%- include('../../fragments/footer.ejs') %>

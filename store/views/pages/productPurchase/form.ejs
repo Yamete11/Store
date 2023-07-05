@@ -1,0 +1,86 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationPurchaseProduct.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();">
+
+        <input type="hidden" name="_id" value="<%= productPurchase._id %>" >
+
+        <label for="title">Nazwa Model: <span class="symbol-required">*</span></label>
+        <select class="<%=(validationErrors.find(e => e.path.includes('product_id')))? 'error-input':'' %>" name="product_id" id="title" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+
+            <% if (formMode != 'showDetails' ) {%>
+                <option <%=(formMode == 'createNew') ? 'selected' : ''%> disabled hidden value="default">--Wybierz Model--</option>
+                <% for (let prods of allProds) {%>
+                <option value="<%=prods._id%>"<%=(productPurchase != null)? ((productPurchase.product_id == prods._id) ? 'selected' : '' ) : ''%> ><%="" + prods.title + " "  + prods.model%></option>
+                <% } %>
+            <% } else {%>
+            <option selected disabled><%="\"" + productPurchase.product.title + "\" ID: " + productPurchase.product._id%></option>
+            <% } %>
+
+        </select>
+        <span id="errorTitle" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('product_id')) ) {%>
+                <%= validationErrors.find(e => e.path.includes('product_id')).message%>
+            <% } %>
+        </span>
+
+        <label for="name">Imie Nazwisko: <span class="symbol-required">*</span></label>
+        <select class="<%=(validationErrors.find(e => e.path.includes('purchase_id')))? 'error-input':'' %>" name="purchase_id" id="name" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+
+            <% if (formMode != 'showDetails' ) {%>
+            <option <%=(formMode == 'createNew') ? 'selected' : ''%> disabled hidden value="default">--Wybierz Model--</option>
+            <% for (let purchs of allPurchases) {%>
+            <option value="<%=purchs._id%>"<%=(productPurchase != null)? ((productPurchase.purchase_id == purchs._id) ? 'selected' : '' ) : ''%> ><%="" + purchs.imie + " "  + purchs.nazwisko%></option>
+            <% } %>
+            <% } else {%>
+            <option selected disabled><%="\"" + productPurchase.purchase.imie + "\" ID: " + productPurchase.purchase.nazwisko%></option>
+            <% } %>
+
+        </select>
+        <span id="errorName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('purchase_id')) ) {%>
+                <%= validationErrors.find(e => e.path.includes('purchase_id')).message%>
+            <% } %>
+        </span>
+
+
+
+
+        <label for="quantity">Liczba: <span class="symbol-required">*</span></label>
+        <input type="number" name="quantity" id="quantity" placeholder="2-60 znaków" value="<%= productPurchase.quantity%>"
+               class="<%= validationErrors.find(e => e.path.includes('quantity')) ? 'error-input' : '' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorQuantity" class="errors-text">
+            <% if (validationErrors.find( e => e.path.includes('quantity'))) { %>
+                <%= validationErrors.find( e => e.path.includes('quantity')).message%>
+            <% } %>
+        </span>
+
+
+        <label id="description-label" for="description">Opis: <span class="symbol-required">*</span></label>
+        <textarea name="description" id="description" placeholder="2-60 znaków"
+                  class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %>><%= productPurchase.description%></textarea>
+        <span id="errorDescription" class="errors-text">
+            <% if (validationErrors.find( e => e.path.includes('description'))) { %>
+                <%= validationErrors.find( e => e.path.includes('description')).message%>
+            <% } %>
+        </span>
+
+        <% if (formMode == 'showDetails') { %>
+            <div class="form-buttons">
+                <a href="/productPurchases/edit/<%= productPurchase._id%>" class="form-button-edit">Edytuj</a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+                <input type="submit" class="form-button-submit" value="<%= btnLabel%>">
+                <a href="/productPurchases" class="form-button-cancel">Anuluj</a>
+            <% } else { %>
+                <a href="/productPurchases" class="form-button-cancel">Powrót</a>
+            <% } %>
+        </div>
+    </form>
+</main>
+<%- include('../../fragments/footer.ejs') %>
